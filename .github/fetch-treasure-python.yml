@@ -1,0 +1,32 @@
+name: Fetch Treasure Python
+
+# Run on push to main, on PRs, or manually via Actions tab
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:  # Allows manual trigger from GitHub UI
+
+jobs:
+  demo-secrets:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      # Step 3: Run our script WITH the secret injected
+      # The secret is passed as an environment variable
+      - name: Run script with secret
+        env:
+          TREASURE_PAT: ${{ secrets.TREASURE_KEY }}
+        run: python check_secret.py
+      
