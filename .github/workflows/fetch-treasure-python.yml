@@ -23,7 +23,11 @@ jobs:
         with:
           python-version: '3.11'
       
-      # Step 3: Run our script WITH the secret injected
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: pip install requests
+
+      # Step 4: Run our script WITH the secret injected
       # The secret is passed as an environment variable
       - name: Run script with secret
         env:
