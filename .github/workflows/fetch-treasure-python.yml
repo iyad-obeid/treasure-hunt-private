@@ -28,5 +28,5 @@ jobs:
       - name: Run script with secret
         env:
           TREASURE_PAT: ${{ secrets.TREASURE_KEY }}
-        run: python check_secret.py
+        run: python read_secret.py
       
